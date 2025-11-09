@@ -30,7 +30,7 @@ public class SimpleGuiExample {
         GUI gui = new GUI("Random Lines Example", 400, 300);
         DrawSurface d = gui.getDrawSurface();
         DrawSurface s = gui.getDrawSurface();
-        ArrayList<Line> lines = new ArrayList<Line>();
+        ArrayList<Line> lines = new ArrayList<>();
         for (int i = 0; i < 10; ++i) {
             int x = rand.nextInt(400) + 1; // get integer in range 1-400
             int y = rand.nextInt(300) + 1; // get integer in range 1-300
@@ -45,6 +45,13 @@ public class SimpleGuiExample {
             d.setColor(Color.MAGENTA);
             d.fillCircle(x2,y2,5);
 
+            /// החלק שמצייר את נקודות החיתוך
+            for (Line line: lines){
+                Point p =l.intersectionWith(line);
+                if (p != null){
+                d.setColor(Color.YELLOW);
+                d.fillCircle((int)(p.getX()),(int)(p.getY()),3);}
+            }
         }
 
 //        for (int i = 0; i < 10; ++i) {
