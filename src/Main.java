@@ -7,6 +7,6 @@ import java.awt.Color;
 
 
 public static void main(String[] args) {
-    SimpleGuiExample example = new SimpleGuiExample();
+    AbstractArtDrawing example = new AbstractArtDrawing();
     example.drawRandomLines();
 }

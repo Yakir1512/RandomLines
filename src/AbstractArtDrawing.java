@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Color;
 
-public class SimpleGuiExample {
+public class AbstractArtDrawing {
 
     public void drawRandomCircles() {
         Random rand = new Random(); // create a random-number generator
@@ -38,19 +38,20 @@ public class SimpleGuiExample {
             int y2 = rand.nextInt(300) + 1; // get integer in range 1-300
             Line l =new Line(x , y ,x2 ,y2);
             lines.add(l);
+            Point temp = new Point(l.middle().getX(), l.middle().getY());
             d.setColor(Color.BLACK);
             d.drawLine(x,y,x2,y2);
             d.setColor(Color.RED);
-            d.fillCircle(x,y,3);
-            d.setColor(Color.MAGENTA);
-            d.fillCircle(x2,y2,5);
-
-            /// החלק שמצייר את נקודות החיתוך
-            for (Line line: lines){
-                Point p =l.intersectionWith(line);
-                if (p != null){
-                d.setColor(Color.YELLOW);
-                d.fillCircle((int)(p.getX()),(int)(p.getY()),3);}
+            d.fillCircle((int)temp.getX(),(int)temp.getY(),3);
+        }
+        /// החלק שמצייר את נקודות החיתוך
+        for (Line line: lines){
+            for(Line line2 : lines) {
+                Point p = line.intersectionWith(line2);
+                if (p != null) {
+                    d.setColor(Color.BLUE);
+                    d.fillCircle((int) (p.getX()), (int) (p.getY()), 3);
+                }
             }
         }
 
