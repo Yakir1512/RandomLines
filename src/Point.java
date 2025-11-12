@@ -1,6 +1,6 @@
  public class Point {
-    private double x;
-    private double y;
+     double x;
+     double y;
     // constructor
     public Point(double x, double y) {
         this.x=x;
