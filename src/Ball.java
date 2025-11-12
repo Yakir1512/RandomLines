@@ -54,10 +54,10 @@
 
      public void moveOneStep() {
          if(this.center.getX() >= 400-this.getSize() ||
-                 this.center.getX() <= 0+this.getSize()) {this.velocity.setDx(this.velocity.getDx() * (-1)); }
+                 this.center.getX() <= 0+this.getSize()) {this.velocity.invertX(); }
 
          if(this.center.getY() >= 400-this.getSize() ||
-                 this.center.getY() <= 0+this.getSize()) {this.velocity.setDy(this.velocity.getDy() * (-1)); }
+                 this.center.getY() <= 0+this.getSize()) {this.velocity.invertY(); }
 
          this.center = this.getVelocity().applyToPoint(this.center);
      }

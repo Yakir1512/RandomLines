@@ -8,6 +8,11 @@ public class Velocity {
         this.dx =dx;
         this.dy =dy;
     }
+    //Change the direction of x
+    public void invertX() { this.dx = -this.dx; }
+
+    //Change the direction of y
+    public void invertY() { this.dy = -this.dy; }
 
     public double getDx() {
         return dx;

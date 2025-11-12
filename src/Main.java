@@ -19,9 +19,9 @@ static private void drawAnimation(Point start, double dx, double dy) {
     GUI gui = new GUI("title",400,400);
     Sleeper sleeper = new Sleeper();
     List<Ball> balls = new ArrayList<>();
-    //Random r =new Random();
     balls.add(new Ball(50, 50, 15, Color.RED, new Velocity(2, 2)));
     balls.add(new Ball(200, 100, 25, Color.BLUE, new Velocity(-3, 1)));
+    balls.add(new Ball(150, 100, 10, Color.BLACK, new Velocity(-3, 1)));
     while (true) {
         for (Ball b : balls) {
             b.moveOneStep();
@@ -30,5 +30,6 @@ static private void drawAnimation(Point start, double dx, double dy) {
             gui.show(d);
             sleeper.sleepFor(10);  // wait for 10 milliseconds.
         }
+
     }
 }
