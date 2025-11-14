@@ -42,7 +42,7 @@
 
      public void setVelocity(Velocity v){this.velocity = v;}
 
-     public void setVelocity(double dx, double dy){this.velocity.dx=dx; this.velocity.dy = dy;}
+     public void setVelocity(double dx, double dy){this.velocity.setDx(dx); this.velocity.setDy(dy);}
 
      public Velocity getVelocity(){return velocity;}
 
@@ -60,6 +60,15 @@
                  this.center.getY() <= 0+this.getSize()) {this.velocity.invertY(); }
 
          this.center = this.getVelocity().applyToPoint(this.center);
+     }
+
+     public void moveOneStep(int minX, int minY, int maxX, int maxY) {
+         this.center.x += velocity.dx;
+         this.center.y += velocity.dy;
+
+         // Walls
+         if (this.center.x - r < minX || this.center.x + r > maxX) velocity.dx = -velocity.dx;
+         if (this.center.y - r < minY || this.center.y + r > maxY) velocity.dy = -velocity.dy;
      }
 
  }

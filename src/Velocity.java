@@ -8,6 +8,7 @@ public class Velocity {
         this.dx =dx;
         this.dy =dy;
     }
+
     //Change the direction of x
     public void invertX() { this.dx = -this.dx; }
 

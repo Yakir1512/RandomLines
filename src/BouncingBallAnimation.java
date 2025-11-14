@@ -10,31 +10,27 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BouncingBallAnimation {
-    public static void main(String[] args){
-        System.out.print("Enter Radius's between '15' - '40'");
-        Scanner s = new Scanner(System.in);
-        drawAnimation(s.nextInt() ,s.nextInt() ,s.nextInt() ,s.nextInt());
+    public static void main(String[] args) {
+        int x = Integer.parseInt(args[0]);
+        int y = Integer.parseInt(args[1]);
+        int dx = Integer.parseInt(args[2]);
+        int dy = Integer.parseInt(args[3]);
+        drawAnimation(x, y, dx, dy);
     }
-    static private void drawAnimation(int x, int y, int z, int w) {
-        GUI gui = new GUI("title",400,400);
+
+    static void drawAnimation(int x, int y, int dx, int dy) {
+        GUI gui = new GUI("title", 400, 400);
         Sleeper sleeper = new Sleeper();
-        List<Ball> balls = new ArrayList<>();
         Random r = new Random();
 
         //create random sized balls with random velocitys
-        balls.add(new Ball(r.nextInt(0,400), 50, x, Color.RED, new Velocity(2, 2)));
-        balls.add(new Ball(r.nextInt(0,400), 100, y, Color.BLUE, new Velocity(r.nextInt(0,10), 1)));
-        balls.add(new Ball(r.nextInt(0,400), 100, z, Color.BLACK, new Velocity(r.nextInt(0,10), 1)));
-        balls.add(new Ball(r.nextInt(0,400), 100, z, Color.BLACK, new Velocity(r.nextInt(0,10), 1)));
+        Ball b = new Ball(r.nextInt(0, 400), r.nextInt(0,400), 30, Color.RED, new Velocity(dx, dy));
         while (true) {
-            for (Ball b : balls) {
-                b.moveOneStep();
-                DrawSurface d = gui.getDrawSurface();
-                b.drawOn(d);
-                gui.show(d);
-                sleeper.sleepFor(10);  // wait for 10 milliseconds.
-            }
-
+            DrawSurface d = gui.getDrawSurface();
+            b.moveOneStep();
+            b.drawOn(d);
+            gui.show(d);
+            sleeper.sleepFor(10);  // wait for 10 milliseconds.
         }
     }
 }

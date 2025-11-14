@@ -58,20 +58,6 @@ public class Line {
     }
 
 
-    // Returns true if the lines intersect, false otherwise
-//    public boolean isIntersecting(Line other) {
-//        if (gradient == other.getGradient()) //אם הישרים מקבילים או חופפים
-//            return false;
-//       return (orienation(this.p1 , this.p2, other.p1) < 0) && (orienation(this.p1 , this.p2, other.p2) >0);
-//        return
-//    }
-
-    //Returns a value that says where  the line is turning away from the corrent line we look at it.
-    //if >0 the line is going right. <0 turning left. =0 on the same line.
-//    public double orienation(Point p1 , Point p2 , Point p3){
-//        double ans = (p2.getY()-p3.getY())*(p1.getX()-p2.getX()) - ((p2.getX()-p3.getX()) * (p1.getY() - p2.getY()) );
-//        return ans;
-//    }
 
     //Returns the exact intersect Point
     //and null if the Point is outside the range
@@ -100,26 +86,6 @@ public class Line {
         if (gradient == other.gradient){
             return null;
         }
-//        double x1 = this.p1.getX(), y1 = this.p1.getY();
-//        double x2 = this.p2.getX(), y2 = this.p2.getY();
-//        double x3 = other.p1.getX(), y3 = other.p1.getY();
-//        double x4 = other.p2.getX(), y4 = other.p2.getY();
-//
-//        double denom = (x1 - x2)*(y3 - y4) - (y1 - y2)*(x3 - x4);
-//
-//        // אם denom == 0 → הקווים מקבילים או חופפים
-//        if (denom == 0) return null;
-//
-//
-//        double px = ((x1*y2 - y1*x2)*(x3 - x4) - (x1 - x2)*(x3*y4 - y3*x4)) / denom;
-//        double py = ((x1*y2 - y1*x2)*(y3 - y4) - (y1 - y2)*(x3*y4 - y3*x4)) / denom;
-//
-//        Point intersection = new Point(px, py);
-//
-//        // נוודא שהנקודה נמצאת בתוך שני הקטעים (ולא רק על המשך הקווים)
-//        if (!isBetween(px, x1, x2) || !isBetween(py, y1, y2) ||
-//                !isBetween(px, x3, x4) || !isBetween(py, y3, y4))
-//            return null;
 
         return xPoint(this,other);
     }

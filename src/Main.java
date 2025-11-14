@@ -15,13 +15,36 @@ public static void main(String[] args) {
     drawAnimation(p,1,15);
 
 }
-static private void drawAnimation(Point start, double dx, double dy) {
+static void drawAnimation(Point start, double dx, double dy) {
     GUI gui = new GUI("title",400,400);
     Sleeper sleeper = new Sleeper();
     List<Ball> balls = new ArrayList<>();
     balls.add(new Ball(50, 50, 15, Color.RED, new Velocity(2, 2)));
     balls.add(new Ball(200, 100, 25, Color.BLUE, new Velocity(-3, 1)));
     balls.add(new Ball(150, 100, 10, Color.BLACK, new Velocity(-3, 1)));
+    while (true) {
+        for (Ball b : balls) {
+            b.moveOneStep();
+            DrawSurface d = gui.getDrawSurface();
+            b.drawOn(d);
+            gui.show(d);
+            sleeper.sleepFor(10);  // wait for 10 milliseconds.
+        }
+
+    }
+}
+
+static void drawAnimation() {
+    GUI gui = new GUI("title",400,400);
+    Sleeper sleeper = new Sleeper();
+    List<Ball> balls = new ArrayList<>();
+    Random r = new Random();
+
+    //create random sized balls with random velocitys
+    balls.add(new Ball(r.nextInt(0,400), 50,30, Color.RED, new Velocity(2, 2)));
+    balls.add(new Ball(r.nextInt(0,400), 100, 30, Color.BLUE, new Velocity(r.nextInt(0,10), 1)));
+    balls.add(new Ball(r.nextInt(0,400), 100, 30, Color.BLACK, new Velocity(r.nextInt(0,10), 1)));
+    balls.add(new Ball(r.nextInt(0,400), 100, 30, Color.BLACK, new Velocity(r.nextInt(0,10), 1)));
     while (true) {
         for (Ball b : balls) {
             b.moveOneStep();
