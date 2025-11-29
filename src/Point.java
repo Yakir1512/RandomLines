@@ -8,7 +8,9 @@
     }
 
      // distance -- return the distance of this point to the other point
-     public double distance(Point other) {
+     public double distance(Point other){
+        if(other == null)
+            return -1;
         double y=0 , x=0 , y2=0 , x2=0;
         y= this.y;
         x= this.x;

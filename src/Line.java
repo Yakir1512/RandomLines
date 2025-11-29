@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Line {
      Point p1;
      Point p2;
@@ -38,6 +40,33 @@ public class Line {
         return mpoint;
     }
 
+    // If this line does not intersect with the rectangle, return null.
+    // Otherwise, return the closest intersection point to the
+    // start of the line.
+    public Point closestIntersectionToStartOfLine(Rectangle rect){
+        // all intersections with the block
+        List<Point> intersections = rect.intersectionPoints(this);
+
+        //return null if there is no such points
+        if (intersections.isEmpty())
+        return null;
+
+        //
+        Point start = rect.getUpperLeft();
+        Point retPoint = null;
+        //set the first value  of this double to the minimum
+        double minDis = Double.MIN_VALUE;
+        //check which intersection point is closest
+        for(Point p : intersections){
+            double dist= start.distance(p);
+            if (dist<minDis){
+                minDis = dist;
+                retPoint = p;
+            }
+        }
+        return retPoint;
+    }
+
     // Returns the start point of the line
     public Point start() {return p1;}
 
@@ -61,7 +90,7 @@ public class Line {
 
     //Returns the exact intersect Point
     //and null if the Point is outside the range
-    Point xPoint(Line l1 , Line l2){
+    public static Point xPoint(Line l1 , Line l2){
         double xxP , yxP;
         //calulate x position
         xxP = ((l1.stat)-(l2.stat))/((l2.gradient)- (l1.gradient));        // mx + n = px + r
@@ -72,10 +101,11 @@ public class Line {
         if (!isBetween(xxP, l1.p1.getX(), l1.p2.getX()) || !isBetween(yxP, l1.p1.getY(), l1.p2.getY()) ||
                 !isBetween(xxP, l2.p1.getX(), l2.p2.getX()) || !isBetween(yxP, l2.p1.getY(), l2.p2.getY())){
             return null;}
-        Point xP = new Point(xxP,yxP);                  //returns intersection point
+        Point xP = new Point(xxP,yxP);                  //returns intersection point ,else null
         return xP;
     }
 
+    //check if the returned point is null
     public boolean isIntersecting(Line other) {
         return xPoint(this , other) != null;
     }
@@ -90,7 +120,7 @@ public class Line {
         return xPoint(this,other);
     }
 
-    boolean isBetween(double val, double start, double end) {
+    static boolean isBetween(double val, double start, double end) {
         return val >= Math.min(start, end) && val <= Math.max(start, end);
     }
 
